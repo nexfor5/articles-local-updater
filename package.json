@@ -1,0 +1,20 @@
+{
+  "name": "articles-local-updater",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "cd server && npm install && npx tsc && cd ../client && npm install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nexfor5/articles-local-updater.git"
+  },
+  "author": "Nicolás Quezada",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nexfor5/articles-local-updater/issues"
+  },
+  "homepage": "https://github.com/nexfor5/articles-local-updater#readme"
+}
