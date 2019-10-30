@@ -1,4 +1,4 @@
-import express from "express";
+import express, {Request, Response} from "express";
 import http from "http";
 import cron from "node-cron";
 import middleware from "./middleware";
@@ -21,6 +21,7 @@ cron.schedule("* * * * *", () => {
 });
 
 const router = express();
+
 applyMiddleware(middleware, router);
 applyRoutes(routes, router);
 applyMiddleware(errorHandlers, router);
