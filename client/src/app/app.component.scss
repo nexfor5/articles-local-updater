@@ -57,6 +57,10 @@ $primary: mat-color($primaryPalette);
             &.icon {
                 justify-content: center;
                 width: 10%;
+
+                >.inner-icon {
+                    display: none;
+                }
             }
         }
 
@@ -71,6 +75,12 @@ $primary: mat-color($primaryPalette);
         &:hover {
             background: #fafafa;
             cursor: pointer;
+
+            >div.icon {
+                >.inner-icon {
+                    display: inherit;
+                }
+            }
         }
     }
 }
