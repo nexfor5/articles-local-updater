@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/theming";
+
+$primaryPalette: mat-palette($mat-indigo);
+$accentPalette: mat-palette($mat-pink, A200, A100, A400);
+$warnPalette: mat-palette($mat-red);
+
+html,
+body,
+app-root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}

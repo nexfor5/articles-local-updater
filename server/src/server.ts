@@ -4,6 +4,7 @@ import cron from "node-cron";
 import middleware from "./middleware";
 import errorHandlers from "./middleware/error-handlers";
 import routes from "./services";
+import {updateArticles} from "./services/articles/articles-controller";
 import {applyMiddleware, applyRoutes} from "./utils";
 
 process.on("uncaughtException", (e) => {
@@ -14,8 +15,10 @@ process.on("unhandledRejection", (e) => {
     process.exit(1);
 });
 
-cron.schedule("* * * * *", () => {
-    // console.log("running a task every minute");
+cron.schedule("0 * * * *", () => {
+    updateArticles();
+    // tslint:disable-next-line:no-console
+    console.log("---Sync data done---");
 });
 
 const router = express();

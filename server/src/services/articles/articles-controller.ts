@@ -2,19 +2,19 @@ import {ArticleModel} from "../../schemas/articles";
 import {createConnection, removeConnection} from "../../utils/database";
 import {getArticlesService} from "./providers/HackerNewsProvider";
 
-export const getArticles = async () => {
+export async function getArticles() {
     try {
         await createConnection();
-        const articles = await ArticleModel.find().sort({date: "desc"});
+        const articles = await ArticleModel.find({isActive: true}).sort({createdAt: -1}).limit(20);
 
         await removeConnection();
         return articles;
     } catch {
         throw new Error("error");
     }
-};
+}
 
-export const updateArticles = async () => {
+export async function updateArticles() {
     try {
         await createConnection();
 
@@ -38,8 +38,8 @@ export const updateArticles = async () => {
     } catch {
         throw new Error("error");
     }
-};
+}
 
-export const deleteArticle = async (articleId: number) => {
+export async function deleteArticle(articleId: number) {
     return [{a: "3"}];
-};
+}
