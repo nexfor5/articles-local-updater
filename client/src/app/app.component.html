@@ -5,8 +5,26 @@
   </div>
 </header>
 <main>
-  <a *ngFor="let article of articles" target="_blank" [href]="article.url">
-    <p>{{article.title}} <span> - {{article.author}} - </span></p>
-    <p>{{article.createdAt | amLocal | amCalendar: calendarFormat }}</p>
-  </a>
+  <div class="loading" *ngIf="loading">
+    <mat-icon fontSet="fa" fontIcon="fa-cog" class="fa-spin"></mat-icon>
+  </div>
+  <div *ngIf="!loading">
+    <div class="empty" *ngIf="!articles || (articles && articles.length === 0)">
+      <div>
+        <p>Empty, do you want to initiate a manual sync?</p>
+        <button mat-raised-button color="primary" (click)="syncData()">Manual sync</button>
+      </div>
+    </div>
+    <div *ngIf="articles && articles.length > 0">
+      <article *ngFor="let article of articles">
+        <div (click)="openArticle(article)" class="texts">
+          <p>{{article.title}} <span> - {{article.author}} - </span></p>
+          <p>{{article.createdAt | amLocal | amCalendar: calendarFormat }}</p>
+        </div>
+        <div (click)="deleteArticle(article)" class="icon">
+          <mat-icon fontSet="fa" fontIcon="fa-trash"></mat-icon>
+        </div>
+      </article>
+    </div>
+  </div>
 </main>

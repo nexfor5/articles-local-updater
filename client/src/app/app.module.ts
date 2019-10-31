@@ -5,6 +5,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import {ArticleService} from 'src/services/article/article.service';
 import {MomentModule} from 'ngx-moment';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import {MomentModule} from 'ngx-moment';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MomentModule
+    MomentModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [ArticleService],
   bootstrap: [AppComponent]

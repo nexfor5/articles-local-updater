@@ -1,17 +1,18 @@
+import {HTTP400Error} from "../../models/http-400-error";
+import {HTTP404Error} from "../../models/http-404-error";
 import {ArticleModel} from "../../schemas/articles";
 import {createConnection, removeConnection} from "../../utils/database";
 import {getArticlesService} from "./providers/HackerNewsProvider";
 
 export async function getArticles() {
-    try {
-        await createConnection();
-        const articles = await ArticleModel.find({isActive: true}).sort({createdAt: -1}).limit(20);
+    await createConnection();
+    const articles = await ArticleModel
+        .find({isActive: true})
+        .sort({createdAt: -1})
+        .limit(20);
 
-        await removeConnection();
-        return articles;
-    } catch {
-        throw new Error("error");
-    }
+    await removeConnection();
+    return articles;
 }
 
 export async function updateArticles() {
@@ -36,10 +37,25 @@ export async function updateArticles() {
         await removeConnection();
         return oldArticles;
     } catch {
-        throw new Error("error");
+        await removeConnection();
     }
 }
 
-export async function deleteArticle(articleId: number) {
-    return [{a: "3"}];
+export async function deleteArticle(articleId: string) {
+    if (!articleId && articleId.length > 0) {
+        throw new HTTP400Error("Invalid inputs");
+    }
+
+    await createConnection();
+    const article = await ArticleModel.findOne({articleId});
+
+    if (article) {
+        article.set("isActive", false);
+        await article.save();
+    } else {
+        throw new HTTP404Error("Article doesn't exist");
+    }
+
+    await removeConnection();
+    return articleId;
 }

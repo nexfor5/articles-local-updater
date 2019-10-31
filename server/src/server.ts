@@ -8,11 +8,11 @@ import {updateArticles} from "./services/articles/articles-controller";
 import {applyMiddleware, applyRoutes} from "./utils";
 
 process.on("uncaughtException", (e) => {
-    process.exit(1);
+    // console.log(e);
 });
 
 process.on("unhandledRejection", (e) => {
-    process.exit(1);
+    // console.log(e);
 });
 
 cron.schedule("0 * * * *", () => {

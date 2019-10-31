@@ -18,8 +18,25 @@ $primary: mat-color($primaryPalette);
         }
     }
 
-    a {
-        font-size: 13px;
+    .loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 5rem;
+    }
+
+    .empty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        >div {
+            text-align: center;
+        }
+    }
+
+    article {
+        font-size: 13pt;
         color: #333;
         border-bottom: 1px solid #ccc;
         padding: 0 15px;
@@ -27,6 +44,21 @@ $primary: mat-color($primaryPalette);
         align-items: center;
         justify-content: space-between;
         text-decoration: none;
+
+        >div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &.texts {
+                width: 90%;
+            }
+
+            &.icon {
+                justify-content: center;
+                width: 10%;
+            }
+        }
 
         span {
             color: #999;
@@ -38,6 +70,7 @@ $primary: mat-color($primaryPalette);
 
         &:hover {
             background: #fafafa;
+            cursor: pointer;
         }
     }
 }
