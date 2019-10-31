@@ -1,17 +1,18 @@
 FROM node:latest
-RUN npm install @angular/cli@latest -g --silent
+RUN npm install @angular/cli@8.3.15 -g --silent
 
-WORKDIR /usr/src/app
-COPY ./server/* /usr/src/app/server/
-COPY ./client/* /usr/src/app/client/
+WORKDIR /usr/project
+COPY server /usr/project/server
+COPY client /usr/project/client
 
-WORKDIR /usr/src/app/client
-RUN npm install --silent
-RUN ls /usr/src/app/client/src
-RUN ng build
-
-WORKDIR /usr/src/app/server
+WORKDIR /usr/project/server
 RUN npm install --silent
 RUN npx tsc
+
+WORKDIR /usr/project/client
+RUN npm install --silent
+RUN ng build
+
+WORKDIR /usr/project/server
 EXPOSE 3000
 CMD ["node", "./dist/server.js"]
