@@ -24,8 +24,8 @@ export default [
     },
     {
         handler: [
-            async (request: Request, res: Response) => {
-                const result = await updateArticles(request);
+            async (req: Request, res: Response) => {
+                const result = await updateArticles();
                 res.status(200).send(result);
             }
         ],
