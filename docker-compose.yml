@@ -1,26 +1,22 @@
 version: '3.7'
 
 services:
-  # app:
-  #   container_name: app
-  #   restart: always
-  #   build: .
-  #   volumes:
-  #     - .:/usr/project
-  #   ports:
-  #     - "3000:3000"
-  #   links:
-  #     - mongo
-  #   depends_on:
-  #     - mongo
+  app:
+    container_name: app
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - mongo
+    depends_on:
+      - mongo
   mongo:
     image: mongo
     restart: always
     ports:
-      - "3001:27017"
+      - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
       MONGO_INITDB_DATABASE: news
-    # volumes:
-    #   - ./collections-init.js:/docker-entrypoint-initdb.d/collections-init.js

@@ -6,12 +6,10 @@ COPY server /usr/project/server
 COPY client /usr/project/client
 
 WORKDIR /usr/project/server
-RUN npm install --silent
-RUN npx tsc
+RUN npm install --silent && mkdir dist && npx tsc
 
 WORKDIR /usr/project/client
-RUN npm install --silent
-RUN ng build
+RUN npm install --silent && ng build --prod
 
 WORKDIR /usr/project/server
 EXPOSE 3000
